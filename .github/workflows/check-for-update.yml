@@ -19,4 +19,4 @@ jobs:
         uses: peter-evans/repository-dispatch@v2
         with:
           event-type: re-build
-        # if: steps.baseupdatecheck.outputs.needs-updating == 'true'
+        if: steps.baseupdatecheck.outputs.needs-updating == 'true'
