@@ -1,0 +1,22 @@
+name: Scheduled image update check
+on:
+  schedule:
+    - cron: "0 0 * * 1"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for source image updates
+        id: baseupdatecheck
+        uses: lucacome/docker-image-update-checker@v1.1.0
+        with:
+          base-image: nodered/node-red
+          image: caesay/node-red
+
+      - name: Trigger re-build
+        uses: peter-evans/repository-dispatch@v2
+        with:
+          event-type: re-build
+        if: steps.baseupdatecheck.outputs.needs-updating == 'true'
