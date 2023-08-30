@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Check for source image updates
         id: baseupdatecheck
-        uses: lucacome/docker-image-update-checker@v1.1.0
+        uses: lucacome/docker-image-update-checker@v1.2.1
         with:
           base-image: nodered/node-red
           image: caesay/node-red
